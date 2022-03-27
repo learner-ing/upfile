@@ -13,3 +13,7 @@ upfile -dir /var/www -host https://192.168.1.1 还未开发
   -host string
         Server IP port,[192.168.1.1:8888]
 ```
+下个版本将添加的功能
+压缩包加密功能
+排除文件夹功能
+排除文件后缀
