@@ -20,3 +20,5 @@ upfile -dir /var/www -host 192.168.1.1:8888 -skip "/var/www/log,/var/www/upload,
 ```
 下个版本将添加的功能</br>
 排除文件后缀
+
+已知bug：Linux下上传的文件在windows上解压会出现数字目录，但在Linux下解压就没问题。
