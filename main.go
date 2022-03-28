@@ -62,6 +62,7 @@ func start(host, dir, module string) {
 
 //发送压缩文件
 func sendData(path string, conn net.Conn) error {
+	path = strings.ReplaceAll(path, "\\", "/")
 	gw := gzip.NewWriter(conn)
 	tw := tar.NewWriter(gw)
 	defer gw.Close()
@@ -81,8 +82,7 @@ func sendData(path string, conn net.Conn) error {
 			return ProcessError(err)
 		}
 		//替换绝对路径
-		fileName = filepath.Clean(fileName)
-		fileHeader.Name = tarFirstDir + "/" + strings.TrimPrefix(strings.ReplaceAll(fileName, filepath.Dir(fileName), ""), string(filepath.Separator))
+		fileHeader.Name = tarFirstDir + "/" + strings.TrimPrefix(strings.ReplaceAll(fileName, path, ""), string(filepath.Separator))
 		fileHeader.Format = tar.FormatGNU
 		if err := tw.WriteHeader(fileHeader); err != nil {
 			return ProcessError(err)
